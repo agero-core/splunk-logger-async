@@ -1,6 +1,6 @@
 # splunk-logger-async
 
-Splunk Logger is a .NET library for logging to Splunk using HTTP collector, asynchronously. It automatically collects environment information and adds it to log.
+Splunk Logger is a **.NET Framework** library for logging to Splunk using HTTP collector, **asynchronously**. It automatically collects environment information and adds it to log.
 
 ## Usage:
 Create instance:
