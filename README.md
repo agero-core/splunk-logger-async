@@ -11,7 +11,8 @@ ILoggerAsync logger =
         authorizationToken: "<Your Splunk Access Token>", 
         applicationName: "TestName", 
         applicationVersion: "1.2.3.4", 
-        timeout: 3000);
+        timeout: 3000,
+		processingThreadCount: 2);
 ```
 Create log:
 ```csharp
