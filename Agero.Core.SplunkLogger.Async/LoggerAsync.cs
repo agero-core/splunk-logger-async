@@ -1,5 +1,4 @@
 ﻿using Agero.Core.Checker;
-using Agero.Core.SplunkLogger;
 using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
