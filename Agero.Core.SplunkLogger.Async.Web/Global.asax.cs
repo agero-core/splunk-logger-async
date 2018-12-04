@@ -9,7 +9,8 @@ namespace Agero.Core.SplunkLogger.Async.Web
         {
             GlobalConfiguration.Configure(config =>
             {
-                WebApiConfig.Configure(config);
+                config.MapHttpAttributeRoutes();
+                config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
             });
         }
     }

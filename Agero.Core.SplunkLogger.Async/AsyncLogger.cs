@@ -8,8 +8,8 @@ using System.Web.Hosting;
 
 namespace Agero.Core.SplunkLogger.Async
 {
-    /// <summary>Logger which supports asynchronous message submit</summary>
-    public class LoggerAsync : ILoggerAsync
+    /// <summary>Asynchronous Splunk Logger</summary>
+    public class AsyncLogger : IAsyncLogger
     {
         private const int QUEUE_READ_TIMEOUT = 1000;
 
@@ -25,9 +25,9 @@ namespace Agero.Core.SplunkLogger.Async
         /// <param name="authorizationToken">Splunk authorization token</param>
         /// <param name="applicationName">Unique application name</param>
         /// <param name="applicationVersion">Application version</param>
-        /// <param name="timeout">Splunk HTTP collector timeout</param>
+        /// <param name="timeout">Splunk HTTP collector timeout (milliseconds)</param>
         /// <param name="processingThreadCount">Number of threads for processing logs (1-5)</param>
-        public LoggerAsync(Uri collectorUri, string authorizationToken, string applicationName, string applicationVersion, int timeout = 10000, int processingThreadCount = 2)
+        public AsyncLogger(Uri collectorUri, string authorizationToken, string applicationName, string applicationVersion, int timeout = 10000, int processingThreadCount = 2)
         {
             Check.ArgumentIsNull(collectorUri, nameof(collectorUri));
             Check.ArgumentIsNullOrWhiteSpace(authorizationToken, nameof(authorizationToken));
@@ -81,34 +81,16 @@ namespace Agero.Core.SplunkLogger.Async
                     if (!_queue.TryTake(out var logItem, millisecondsTimeout: QUEUE_READ_TIMEOUT))
                         continue;
 
-                    _logger.Log(logItem.Type, logItem.Message, logItem.Data, logItem.CorrelationId);
+                    Check.Assert(_logger.Log(logItem.Type, logItem.Message, logItem.Data, logItem.CorrelationId), "Log submit failed.");
                 }
-                catch (Exception exception)
+                catch (Exception ex)
                 {
-                    WriteToEventLog(exception.ToString(), EventLogEntryType.Error);
+                    Trace.WriteLine(ex.ToString(), "ERROR");
                 }
             }
 
             if (Interlocked.Decrement(ref _actualProcessingThreadCount) == 0)
                 _queue.Dispose();
-        }
-
-        private void WriteToEventLog(string body, EventLogEntryType type)
-        {
-            Check.ArgumentIsNullOrWhiteSpace(body, "body");
-
-            try
-            {
-                using (var eventLog = new EventLog("Application"))
-                {
-                    eventLog.Source = _logger.ApplicationName;
-                    eventLog.WriteEntry(body, type);
-                }
-            }
-            catch
-            {
-                // suppress all event log errors
-            }
         }
 
         /// <summary>Submits log to Splunk</summary>

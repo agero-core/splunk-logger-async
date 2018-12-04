@@ -15,17 +15,17 @@ namespace Agero.Core.SplunkLogger.Async.Tests
         [ClassInitialize]
         public static void LoggerTestsInitialize(TestContext context)
         {
-            Assert.IsTrue(File.Exists(@"logger-settings.json"), "The configuration file logger-settings.json needs to be setup. Please see https://github.com/agero-core/splunk-logger to set it up.");
+            Assert.IsTrue(File.Exists(@"logger-settings.json"), "The configuration file logger-settings.json needs to be setup. Please see https://github.com/agero-core/splunk-logger-async to set it up.");
 
             _splunkCollectorInfo = JsonConvert.DeserializeObject<LoggerAsyncTestsSetup>(File.ReadAllText(@"logger-settings.json"));
         }
 
-        private static LoggerAsync CreateLogger(string collectorUrl, int processingThreadCount = 2)
+        private static AsyncLogger CreateLogger(string collectorUrl, int processingThreadCount = 2)
         {
             Check.ArgumentIsNullOrWhiteSpace(collectorUrl, nameof(collectorUrl));
             Check.Argument(processingThreadCount > 0, "processingThreadCount > 0");
 
-            return new LoggerAsync(
+            return new AsyncLogger(
                 collectorUri: new Uri(collectorUrl),
                 authorizationToken: _splunkCollectorInfo.AuthenticationToken,
                 applicationName: "Test",
@@ -34,22 +34,20 @@ namespace Agero.Core.SplunkLogger.Async.Tests
                 processingThreadCount: processingThreadCount);
         }
 
-        private static void LogError(ILoggerAsync logger, object id, int iterationCount = 10)
+        private static void LogError(IAsyncLogger logger, object thread)
         {
             Check.ArgumentIsNull(logger, nameof(logger));
-            Check.ArgumentIsNull(id, nameof(id));
-            Check.Argument(iterationCount > 0, "iterationCount > 0");
+            Check.ArgumentIsNull(thread, nameof(thread));
 
-            for (var i = 0; i < iterationCount; i++)
+            for (var i = 0; i < 10; i++)
             {
-                logger.Log("Error", $"Error {i} from thread {id}");
-                Console.WriteLine($"Thread - {id}, iteration - {i}");
+                logger.Log("Error", $"Error {i} from thread {thread}", new { thread, iteration = i });
+                Console.WriteLine($"Thread - {thread}, iteration - {i}");
                 Thread.Sleep(1);
             }
         }
 
         [TestMethod]
-        [TestCategory("Ignore")]
         public void MultiThreading_Test_When_Invalid_Collector_Url()
         {
             using (var logger = CreateLogger("http://localhost/Wrong/"))
@@ -57,7 +55,7 @@ namespace Agero.Core.SplunkLogger.Async.Tests
                 // Act
                 for (var i = 1; i <= 5; i++)
                 {
-                    ThreadPool.QueueUserWorkItem(delegate(object id) { LogError(logger, id, 10); }, i);
+                    ThreadPool.QueueUserWorkItem(delegate(object id) { LogError(logger, id); }, i);
                 }
 
                 Thread.Sleep(5_000);
@@ -70,7 +68,6 @@ namespace Agero.Core.SplunkLogger.Async.Tests
         }
 
         [TestMethod]
-        [TestCategory("Ignore")]
         public void MultiThreading_Test_When_Valid_Collector_Url()
         {
             using (var logger = CreateLogger(_splunkCollectorInfo.SplunkCollectorUrl, 2))
@@ -78,7 +75,7 @@ namespace Agero.Core.SplunkLogger.Async.Tests
                 // Act
                 for (var i = 1; i <= 5; i++)
                 {
-                    ThreadPool.QueueUserWorkItem(delegate (object id) { LogError(logger, id, 10); }, i);
+                    ThreadPool.QueueUserWorkItem(delegate (object id) { LogError(logger, id); }, i);
                 }
 
                 Thread.Sleep(5_000);
