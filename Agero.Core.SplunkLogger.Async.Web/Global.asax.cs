@@ -1,3 +1,4 @@
+using System.Net;
 using System.Web;
 using System.Web.Http;
 
@@ -11,6 +12,8 @@ namespace Agero.Core.SplunkLogger.Async.Web
             {
                 config.MapHttpAttributeRoutes();
                 config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
+
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             });
         }
     }
