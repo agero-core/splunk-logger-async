@@ -1,27 +1,29 @@
-# splunk-logger-async
+# Async Splunk Logger
 
-Splunk Logger is a **.NET Framework (>= v4.6.1)** library for logging to Splunk using HTTP collector, **asynchronously**. It automatically collects environment information and adds it to log.
+[![NuGet Version](http://img.shields.io/nuget/v/Agero.Core.SplunkLogger.Async.svg?style=flat)](https://www.nuget.org/packages/Agero.Core.SplunkLogger.Async/) 
+[![NuGet Downloads](http://img.shields.io/nuget/dt/Agero.Core.SplunkLogger.Async.svg?style=flat)](https://www.nuget.org/packages/Agero.Core.SplunkLogger.Async/)
+
+Async Splunk Logger is a **.NET Framework (>= v4.6.1)** library for logging to Splunk using HTTP collector **asynchronously**. It has in-memory queue and runs background threads to pick logs from queue and submit them to Splunk using [Splunk Logger](https://github.com/agero-core/splunk-logger/) library. 
 
 ## Usage:
 Create instance:
 ```csharp
-ILoggerAsync logger = 
-    new LoggerAsync(
-        collectorUri: new Uri("<Your Splunk Collector Url>"), 
-        authorizationToken: "<Your Splunk Access Token>", 
-        applicationName: "TestName", 
-        applicationVersion: "1.2.3.4", 
-        timeout: 3000,  
+IAsyncLogger logger = 
+    new AsyncLogger(
+        collectorUri: new Uri("<Your Splunk Collector Url>"),
+        authorizationToken: "<Your Splunk Access Token>",
+        applicationName: "TestName",
+        applicationVersion: "1.2.3.4",
+        timeout: 3000,
         processingThreadCount: 2);
 ```
 Create log:
 ```csharp
-bool result = 
-    logger.Log(
-        type: "TestInfo", 
-        message: "Test message", 
-        data: new { test1 = "test1", test2 = "test2" },
-        correlationId: "1234567");	
+logger.Log(
+    type: "TestInfo", 
+    message: "Test message", 
+    data: new { test1 = "test1", test2 = "test2" },
+    correlationId: "1234567");	
 ```
 
 This creates the following log in Splunk:
