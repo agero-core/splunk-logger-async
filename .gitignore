@@ -6,7 +6,6 @@ bin/
 obj/
 
 /packages
-/NuGet
 /TestResults
 
 *.user

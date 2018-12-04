@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2026
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", "{58060FE5-7EBD-4DE7-9347-1850DC98F030}"
 	ProjectSection(SolutionItems) = preProject
@@ -30,7 +30,6 @@ Global
 		{CD4D3AE4-731F-4BCD-9955-0C796E765EA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD4D3AE4-731F-4BCD-9955-0C796E765EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD4D3AE4-731F-4BCD-9955-0C796E765EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD4D3AE4-731F-4BCD-9955-0C796E765EA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
