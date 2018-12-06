@@ -8,9 +8,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", 
 		Properties\SolutionInfo.cs = Properties\SolutionInfo.cs
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agero.Core.SplunkLogger.Async", "Agero.Core.SplunkLogger.Async\Agero.Core.SplunkLogger.Async.csproj", "{7ED35C56-79F0-49B7-B11B-9FBB41802CF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agero.Core.SplunkLogger.Async", "Agero.Core.SplunkLogger.Async\Agero.Core.SplunkLogger.Async.csproj", "{7ED35C56-79F0-49B7-B11B-9FBB41802CF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agero.Core.SplunkLogger.Async.Tests", "Agero.Core.SplunkLogger.Async.Tests\Agero.Core.SplunkLogger.Async.Tests.csproj", "{A733C190-BEC8-4B78-B0D5-B2DA85CB5B98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agero.Core.SplunkLogger.Async.Tests", "Agero.Core.SplunkLogger.Async.Tests\Agero.Core.SplunkLogger.Async.Tests.csproj", "{A733C190-BEC8-4B78-B0D5-B2DA85CB5B98}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agero.Core.SplunkLogger.Async.Web", "Agero.Core.SplunkLogger.Async.Web\Agero.Core.SplunkLogger.Async.Web.csproj", "{CD4D3AE4-731F-4BCD-9955-0C796E765EA3}"
 EndProject
@@ -27,6 +27,7 @@ Global
 		{A733C190-BEC8-4B78-B0D5-B2DA85CB5B98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A733C190-BEC8-4B78-B0D5-B2DA85CB5B98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A733C190-BEC8-4B78-B0D5-B2DA85CB5B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A733C190-BEC8-4B78-B0D5-B2DA85CB5B98}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CD4D3AE4-731F-4BCD-9955-0C796E765EA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD4D3AE4-731F-4BCD-9955-0C796E765EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD4D3AE4-731F-4BCD-9955-0C796E765EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
