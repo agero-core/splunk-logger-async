@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net47</TargetFrameworks>
+    <TargetFrameworks>net461</TargetFrameworks>
     <PackageId>Agero.Core.SplunkLogger.Async</PackageId>
     <PackageTags>Logger,Logging,Splunk</PackageTags>
     <Version>1.0.0</Version>

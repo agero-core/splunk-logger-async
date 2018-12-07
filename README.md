@@ -3,7 +3,7 @@
 [![NuGet Version](http://img.shields.io/nuget/v/Agero.Core.SplunkLogger.Async.svg?style=flat)](https://www.nuget.org/packages/Agero.Core.SplunkLogger.Async/) 
 [![NuGet Downloads](http://img.shields.io/nuget/dt/Agero.Core.SplunkLogger.Async.svg?style=flat)](https://www.nuget.org/packages/Agero.Core.SplunkLogger.Async/)
 
-Async Splunk Logger is a **.NET Framework (>= v4.7)** library for logging to Splunk using HTTP collector **asynchronously**. It has in-memory queue and runs background threads to pick logs from queue and submit them to Splunk using [Splunk Logger](https://github.com/agero-core/splunk-logger/) library. 
+Async Splunk Logger is a **.NET Framework (>= v4.6.1)** library for logging to Splunk using HTTP collector **asynchronously**. It has in-memory queue and runs background threads to pick logs from queue and submit them to Splunk using [Splunk Logger](https://github.com/agero-core/splunk-logger/) library. 
 
 ## Usage:
 Create instance:
