@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461</TargetFrameworks>
+    <PackageId>Agero.Core.SplunkLogger.Async</PackageId>
+    <PackageTags>Logger,Logging,Splunk</PackageTags>
+    <Version>1.0.0</Version>
+    <Authors>Core Automation Team</Authors>
+    <Company>Agero Inc.</Company>
+    <Copyright>Copyright © Agero 2018</Copyright>
+    <Product>SplunkLogger</Product>
+    <Description>.NET Framework library for asynchronous logging to Splunk using HTTP collector.</Description>
+    <Title>Async Splunk Logger</Title>
+    <PackageProjectUrl>https://github.com/agero-core/splunk-logger-async</PackageProjectUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageIconUrl>https://secure.gravatar.com/avatar/8b6c044292b862f1870550039390f631</PackageIconUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/agero-core/splunk-logger-async/master/LICENSE.md</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/agero-core/splunk-logger-async.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RootNamespace>Agero.Core.SplunkLogger.Async</RootNamespace>
+    <AssemblyName>Agero.Core.SplunkLogger.Async</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Agero.Core.Checker" Version="1.0.11" />
+    <PackageReference Include="Agero.Core.Lazy" Version="1.0.0" />
+    <PackageReference Include="Agero.Core.SplunkLogger" Version="1.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Web" />
+  </ItemGroup>
+
+</Project>
